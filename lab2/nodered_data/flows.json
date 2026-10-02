@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "5d991499dc532823",
+        "type": "tab",
+        "label": "Поток 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "72d08d9588231512",
         "type": "inject",
         "z": "95d84f3042f82e5d",
@@ -52,5 +60,71 @@
         "x": 420,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "f33aa5ee5c8086e6",
+        "type": "inject",
+        "z": "5d991499dc532823",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Kotin/function",
+        "payload": "7",
+        "payloadType": "num",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "420eabb648c928c1"
+            ]
+        ]
+    },
+    {
+        "id": "d4024a3fc0398723",
+        "type": "debug",
+        "z": "5d991499dc532823",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "420eabb648c928c1",
+        "type": "function",
+        "z": "5d991499dc532823",
+        "name": "function 1",
+        "func": "const input = Number(msg.payload);\n\nlet type;\n\nif (input % 2 === 0) {\n    type = \"even\";\n} else {\n    type = \"odd\";\n}\n\nconst numbers = [];\n\nfor (let i = 1; i <= input; i++) {\n    numbers.push(i);\n}\n\nconst result = {\n    student: \"Kotin\",\n    number: input,\n    type: type,\n    numbers: numbers\n};\n\nreturn {\n    payload: result,\n    topic: \"lab2/Kotin/function\"\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 240,
+        "wires": [
+            [
+                "d4024a3fc0398723"
+            ]
+        ]
     }
 ]
