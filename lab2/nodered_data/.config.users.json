@@ -21,6 +21,51 @@
                     "pretty": true,
                     "json-view": true
                 }
+            },
+            "sidebar": {
+                "state": {
+                    "v": 4,
+                    "tabs": [],
+                    "primary": {
+                        "width": 300,
+                        "top": {
+                            "tabs": [
+                                "info",
+                                "help",
+                                "config",
+                                "context"
+                            ],
+                            "height": 301.6,
+                            "hidden": false,
+                            "active": "info"
+                        },
+                        "bottom": {
+                            "tabs": [
+                                "debug"
+                            ],
+                            "hidden": false,
+                            "active": "debug"
+                        }
+                    },
+                    "secondary": {
+                        "width": 217,
+                        "top": {
+                            "tabs": [
+                                "explorer"
+                            ],
+                            "height": 301.6,
+                            "hidden": false,
+                            "active": "explorer"
+                        },
+                        "bottom": {
+                            "tabs": [
+                                "palette"
+                            ],
+                            "hidden": false,
+                            "active": "palette"
+                        }
+                    }
+                }
             }
         }
     }
