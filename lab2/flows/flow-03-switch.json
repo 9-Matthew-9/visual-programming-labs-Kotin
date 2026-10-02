@@ -1,0 +1,29 @@
+[
+    {
+        "id": "d42f5b3f2e721525",
+        "type": "inject",
+        "z": "5c290adb386e97a4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Kotin/switch",
+        "payload": "3",
+        "payloadType": "num",
+        "x": 170,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    }
+]
