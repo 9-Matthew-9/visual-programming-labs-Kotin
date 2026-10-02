@@ -1,0 +1,157 @@
+[
+    {
+        "id": "43a08a4179e3c863",
+        "type": "tab",
+        "label": "Поток 8",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "29fa41b8fb0a5e3d",
+        "type": "http in",
+        "z": "43a08a4179e3c863",
+        "name": "",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 260,
+        "wires": [
+            [
+                "37c4cdfb1959c738"
+            ]
+        ]
+    },
+    {
+        "id": "37c4cdfb1959c738",
+        "type": "function",
+        "z": "43a08a4179e3c863",
+        "name": "function 4",
+        "func": "msg.payload = \"Hello from Node-RED, Kotin!\";\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "b1a55f2d35c4bf7f"
+            ]
+        ]
+    },
+    {
+        "id": "b1a55f2d35c4bf7f",
+        "type": "http response",
+        "z": "43a08a4179e3c863",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 570,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "fbf157ef03ce2427",
+        "type": "http in",
+        "z": "43a08a4179e3c863",
+        "name": "",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 340,
+        "wires": [
+            [
+                "5e4dbd2b5241ebdd"
+            ]
+        ]
+    },
+    {
+        "id": "5e4dbd2b5241ebdd",
+        "type": "function",
+        "z": "43a08a4179e3c863",
+        "name": "function 5",
+        "func": "msg.payload = {\n    student: \"Kotin\",\n    lab: 2\n};\n\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "caf09813c4c07083"
+            ]
+        ]
+    },
+    {
+        "id": "caf09813c4c07083",
+        "type": "http response",
+        "z": "43a08a4179e3c863",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 570,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "93368a7a0208617d",
+        "type": "http in",
+        "z": "43a08a4179e3c863",
+        "name": "",
+        "url": "/api/items/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 300,
+        "y": 440,
+        "wires": [
+            [
+                "5f218c193bc43939"
+            ]
+        ]
+    },
+    {
+        "id": "5f218c193bc43939",
+        "type": "function",
+        "z": "43a08a4179e3c863",
+        "name": "function 6",
+        "func": "const id = Number(msg.req.params.id);\n\nif (id === 1) {\n    msg.statusCode = 200;\n    msg.payload = {\n        id: 1,\n        name: \"Burger\"\n    };\n} else if (id === 2) {\n    msg.statusCode = 200;\n    msg.payload = {\n        id: 2,\n        name: \"Pizza\"\n    };\n} else {\n    msg.statusCode = 404;\n    msg.payload = {\n        error: \"Item not found\",\n        id: id\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "e5f5ae13ddf4da39"
+            ]
+        ]
+    },
+    {
+        "id": "e5f5ae13ddf4da39",
+        "type": "http response",
+        "z": "43a08a4179e3c863",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 440,
+        "wires": []
+    }
+]

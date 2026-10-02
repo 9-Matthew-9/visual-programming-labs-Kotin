@@ -48,6 +48,76 @@
         "env": []
     },
     {
+        "id": "2b8ef35417841dbe",
+        "type": "tab",
+        "label": "Поток 7",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5dc5f2662ba40bf6",
+        "type": "mqtt-broker",
+        "name": "HiveMQ",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "910826fc6bebcc62",
+        "type": "mqtt-broker",
+        "name": "HiveMQ",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "72d08d9588231512",
         "type": "inject",
         "z": "95d84f3042f82e5d",
@@ -493,6 +563,111 @@
         "statusType": "auto",
         "x": 620,
         "y": 220,
+        "wires": []
+    },
+    {
+        "id": "1b51d1ae1d2a79a2",
+        "type": "inject",
+        "z": "2b8ef35417841dbe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Kotin",
+        "payloadType": "str",
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "94d9030e6f78d1c5"
+            ]
+        ]
+    },
+    {
+        "id": "94d9030e6f78d1c5",
+        "type": "function",
+        "z": "2b8ef35417841dbe",
+        "name": "function 3",
+        "func": "const value = Math.floor(Math.random() * 101);\n\nreturn {\n    payload: value,\n    topic: \"student/Kotin/lab2/random\"\n};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "e570becb34a71aad"
+            ]
+        ]
+    },
+    {
+        "id": "88e944703b5624f2",
+        "type": "mqtt in",
+        "z": "2b8ef35417841dbe",
+        "name": "",
+        "topic": "student/Kotin/lab2/random",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "5dc5f2662ba40bf6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "8e97657bc7b04d4c"
+            ]
+        ]
+    },
+    {
+        "id": "e570becb34a71aad",
+        "type": "mqtt out",
+        "z": "2b8ef35417841dbe",
+        "name": "",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "910826fc6bebcc62",
+        "x": 630,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8e97657bc7b04d4c",
+        "type": "debug",
+        "z": "2b8ef35417841dbe",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 260,
         "wires": []
     }
 ]
