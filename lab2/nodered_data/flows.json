@@ -24,6 +24,14 @@
         "env": []
     },
     {
+        "id": "0d0b7f34460e31a3",
+        "type": "tab",
+        "label": "Поток 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "72d08d9588231512",
         "type": "inject",
         "z": "95d84f3042f82e5d",
@@ -247,6 +255,93 @@
         "statusType": "auto",
         "x": 660,
         "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4c1821a9b9e61cd0",
+        "type": "inject",
+        "z": "0d0b7f34460e31a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Заказ Kotin",
+        "payloadType": "str",
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "a54ed4f56424390b"
+            ]
+        ]
+    },
+    {
+        "id": "a54ed4f56424390b",
+        "type": "change",
+        "z": "0d0b7f34460e31a3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "lab2/Kotin/change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "$millis()",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Заявка обработана",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "afd4f86ed19d9598"
+            ]
+        ]
+    },
+    {
+        "id": "afd4f86ed19d9598",
+        "type": "debug",
+        "z": "0d0b7f34460e31a3",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 180,
         "wires": []
     }
 ]
