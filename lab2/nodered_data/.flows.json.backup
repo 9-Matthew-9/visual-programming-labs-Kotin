@@ -462,7 +462,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "https://catfacts.ninja/fact",
+        "url": "https://official-joke-api.appspot.com/random_joke",
         "tls": "",
         "persist": false,
         "proxy": "",
