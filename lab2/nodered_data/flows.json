@@ -72,6 +72,14 @@
         "env": []
     },
     {
+        "id": "717c2a95e0fecd63",
+        "type": "tab",
+        "label": "Поток 11",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "5dc5f2662ba40bf6",
         "type": "mqtt-broker",
         "name": "HiveMQ",
@@ -247,6 +255,33 @@
         "width": 6,
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "5b8c55e1baae0b80",
+        "type": "telegram bot",
+        "botname": "",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
     },
     {
         "id": "72d08d9588231512",
@@ -1065,6 +1100,177 @@
         "useDifferentColor": false,
         "className": "",
         "x": 750,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a52fab052e80de4d",
+        "type": "telegram command",
+        "z": "717c2a95e0fecd63",
+        "name": "",
+        "command": "/start",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "5b8c55e1baae0b80",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 210,
+        "y": 200,
+        "wires": [
+            [
+                "e0491c539f483557"
+            ]
+        ]
+    },
+    {
+        "id": "a8796828d0a42acb",
+        "type": "telegram sender",
+        "z": "717c2a95e0fecd63",
+        "name": "",
+        "bot": "5b8c55e1baae0b80",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9afc05dc8bfde49c",
+        "type": "telegram receiver",
+        "z": "717c2a95e0fecd63",
+        "name": "",
+        "bot": "5b8c55e1baae0b80",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 230,
+        "y": 380,
+        "wires": [
+            [
+                "d023806f4126981a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "908c4157f0ae6468",
+        "type": "telegram sender",
+        "z": "717c2a95e0fecd63",
+        "name": "",
+        "bot": "5b8c55e1baae0b80",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d023806f4126981a",
+        "type": "function",
+        "z": "717c2a95e0fecd63",
+        "name": "function 8",
+        "func": "msg.payload.type = \"message\";\nmsg.payload.content = \"Echo: \" + msg.payload.content;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 380,
+        "wires": [
+            [
+                "908c4157f0ae6468"
+            ]
+        ]
+    },
+    {
+        "id": "e0491c539f483557",
+        "type": "function",
+        "z": "717c2a95e0fecd63",
+        "name": "function 9",
+        "func": "msg.payload.type = \"message\";\nmsg.payload.content = \"Привет, Kotin! Бот работает.\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "a8796828d0a42acb"
+            ]
+        ]
+    },
+    {
+        "id": "e3553fcd22a97ffe",
+        "type": "function",
+        "z": "717c2a95e0fecd63",
+        "name": "function 10",
+        "func": "msg.payload.type = \"message\";\nmsg.payload.content =\n    \"Доступные команды:\\n\" +\n    \"/start — запуск бота\\n\" +\n    \"/help — список команд\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "a3fbe47cb61fb299"
+            ]
+        ]
+    },
+    {
+        "id": "0f816d9001b1ca9d",
+        "type": "telegram command",
+        "z": "717c2a95e0fecd63",
+        "name": "",
+        "command": "/help",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "5b8c55e1baae0b80",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "e3553fcd22a97ffe"
+            ]
+        ]
+    },
+    {
+        "id": "a3fbe47cb61fb299",
+        "type": "telegram sender",
+        "z": "717c2a95e0fecd63",
+        "name": "",
+        "bot": "5b8c55e1baae0b80",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 610,
         "y": 280,
         "wires": [
             []
