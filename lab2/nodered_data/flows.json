@@ -32,6 +32,14 @@
         "env": []
     },
     {
+        "id": "6e9df76fbee0c19f",
+        "type": "tab",
+        "label": "Поток 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "72d08d9588231512",
         "type": "inject",
         "z": "95d84f3042f82e5d",
@@ -343,5 +351,70 @@
         "x": 600,
         "y": 180,
         "wires": []
+    },
+    {
+        "id": "d679673efc8912e7",
+        "type": "inject",
+        "z": "6e9df76fbee0c19f",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"student\":\"Kotin\",\"course\":\"Node-RED\",\"lab\":2}",
+        "payloadType": "json",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "4656eceffe336e57"
+            ]
+        ]
+    },
+    {
+        "id": "a7b2730ac5a1ae4f",
+        "type": "debug",
+        "z": "6e9df76fbee0c19f",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4656eceffe336e57",
+        "type": "template",
+        "z": "6e9df76fbee0c19f",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Студент: {{payload.student}}\nКурс: {{payload.course}}\nЛабораторная работа: {{payload.lab}}",
+        "output": "str",
+        "x": 360,
+        "y": 240,
+        "wires": [
+            [
+                "a7b2730ac5a1ae4f"
+            ]
+        ]
     }
 ]
