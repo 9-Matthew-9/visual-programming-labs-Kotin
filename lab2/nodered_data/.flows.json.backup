@@ -80,12 +80,11 @@
         "env": []
     },
     {
-        "id": "lab2-flow11",
+        "id": "77977ccf12a2d7b3",
         "type": "tab",
-        "label": "Поток 12",
+        "label": "11 Files",
         "disabled": false,
-        "info": "",
-        "env": []
+        "info": "Flow 11: запись и чтение файла."
     },
     {
         "id": "5dc5f2662ba40bf6",
@@ -1285,9 +1284,9 @@
         ]
     },
     {
-        "id": "inj11write",
+        "id": "99369e4838d9d6df",
         "type": "inject",
-        "z": "lab2-flow11",
+        "z": "77977ccf12a2d7b3",
         "name": "Записать данные",
         "props": [
             {
@@ -1298,43 +1297,43 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "1",
         "topic": "",
         "payload": "write",
         "payloadType": "str",
-        "x": 180,
+        "x": 150,
         "y": 160,
         "wires": [
             [
-                "fn11prepare"
+                "332d7609126772fb"
             ]
         ]
     },
     {
-        "id": "fn11prepare",
+        "id": "332d7609126772fb",
         "type": "function",
-        "z": "lab2-flow11",
+        "z": "77977ccf12a2d7b3",
         "name": "Подготовить JSON",
-        "func": "const data = {\\n    student: \"Kotin\",\\n    lab: 2,\\n    message: \"Данные сохранены в файл\"\\n};\\n\\nmsg.payload = JSON.stringify(data, null, 2);\\nreturn msg;",
+        "func": "const data = {\n    student: \"Kotin\",\n    lab: 2,\n    message: \"Данные сохранены в файл\"\n};\n\nmsg.payload = JSON.stringify(data, null, 2);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 390,
         "y": 160,
         "wires": [
             [
-                "file11write"
+                "0eb5a6df32db2d36"
             ]
         ]
     },
     {
-        "id": "file11write",
+        "id": "0eb5a6df32db2d36",
         "type": "file",
-        "z": "lab2-flow11",
+        "z": "77977ccf12a2d7b3",
         "name": "Write File",
         "filename": "/data/lab2-data.json",
         "filenameType": "str",
@@ -1342,16 +1341,16 @@
         "createDir": true,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 650,
+        "x": 640,
         "y": 160,
         "wires": [
             []
         ]
     },
     {
-        "id": "inj11read",
+        "id": "f95be64c92d155a9",
         "type": "inject",
-        "z": "lab2-flow11",
+        "z": "77977ccf12a2d7b3",
         "name": "Прочитать данные",
         "props": [
             {
@@ -1367,38 +1366,38 @@
         "topic": "",
         "payload": "read",
         "payloadType": "str",
-        "x": 180,
+        "x": 150,
         "y": 300,
         "wires": [
             [
-                "file11read"
+                "0ac6a33053019dc8"
             ]
         ]
     },
     {
-        "id": "file11read",
+        "id": "0ac6a33053019dc8",
         "type": "file in",
-        "z": "lab2-flow11",
+        "z": "77977ccf12a2d7b3",
         "name": "Read File",
         "filename": "/data/lab2-data.json",
         "filenameType": "str",
         "format": "utf8",
         "chunk": false,
-        "sendError": false,
+        "sendError": true,
         "encoding": "utf8",
         "allProps": false,
-        "x": 410,
+        "x": 400,
         "y": 300,
         "wires": [
             [
-                "dbg11read"
+                "a74de5eb07cb826c"
             ]
         ]
     },
     {
-        "id": "dbg11read",
+        "id": "a74de5eb07cb826c",
         "type": "debug",
-        "z": "lab2-flow11",
+        "z": "77977ccf12a2d7b3",
         "name": "Прочитанный файл",
         "active": true,
         "tosidebar": true,

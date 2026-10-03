@@ -87,6 +87,14 @@
         "info": "Flow 11: запись и чтение файла."
     },
     {
+        "id": "lab2-flow12",
+        "type": "tab",
+        "label": "12 Context",
+        "disabled": false,
+        "info": "Flow 12: демонстрация flow context со счётчиком.",
+        "env": []
+    },
+    {
         "id": "5dc5f2662ba40bf6",
         "type": "mqtt-broker",
         "name": "HiveMQ",
@@ -1409,6 +1417,93 @@
         "statusType": "auto",
         "x": 660,
         "y": 300,
+        "wires": []
+    },
+    {
+        "id": "inj12inc",
+        "type": "inject",
+        "z": "lab2-flow12",
+        "name": "Увеличить счётчик",
+        "props": [
+            {
+                "p": "action",
+                "v": "increment",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "fn12context"
+            ]
+        ]
+    },
+    {
+        "id": "inj12read",
+        "type": "inject",
+        "z": "lab2-flow12",
+        "name": "Прочитать счётчик",
+        "props": [
+            {
+                "p": "action",
+                "v": "read",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "fn12context"
+            ]
+        ]
+    },
+    {
+        "id": "fn12context",
+        "type": "function",
+        "z": "lab2-flow12",
+        "name": "Flow context counter",
+        "func": "let counter = flow.get(\"counter\") || 0;\n\nif (msg.action === \"increment\") {\n    counter += 1;\n    flow.set(\"counter\", counter);\n}\n\nmsg.payload = {\n    student: \"Kotin\",\n    contextType: \"flow context\",\n    counter: counter,\n    action: msg.action\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 210,
+        "wires": [
+            [
+                "dbg12"
+            ]
+        ]
+    },
+    {
+        "id": "dbg12",
+        "type": "debug",
+        "z": "lab2-flow12",
+        "name": "Результат context",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 210,
         "wires": []
     }
 ]
