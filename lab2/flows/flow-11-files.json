@@ -1,0 +1,135 @@
+[
+  {
+    "id": "lab2-flow11",
+    "type": "tab",
+    "label": "11 Files",
+    "disabled": false,
+    "info": "Flow 11: запись и чтение файла."
+  },
+  {
+    "id": "inj11write",
+    "type": "inject",
+    "z": "lab2-flow11",
+    "name": "Записать данные",
+    "props": [
+      {
+        "p": "payload",
+        "v": "write",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "write",
+    "payloadType": "str",
+    "x": 150,
+    "y": 160,
+    "wires": [
+      [
+        "fn11prepare"
+      ]
+    ]
+  },
+  {
+    "id": "fn11prepare",
+    "type": "function",
+    "z": "lab2-flow11",
+    "name": "Подготовить JSON",
+    "func": "const data = {\\n    student: \"Kotin\",\\n    lab: 2,\\n    message: \"Данные сохранены в файл\"\\n};\\n\\nmsg.payload = JSON.stringify(data, null, 2);\\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 390,
+    "y": 160,
+    "wires": [
+      [
+        "file11write"
+      ]
+    ]
+  },
+  {
+    "id": "file11write",
+    "type": "file",
+    "z": "lab2-flow11",
+    "name": "Write File",
+    "filename": "/data/lab2-data.json",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": true,
+    "overwriteFile": "true",
+    "encoding": "utf8",
+    "x": 640,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "inj11read",
+    "type": "inject",
+    "z": "lab2-flow11",
+    "name": "Прочитать данные",
+    "props": [
+      {
+        "p": "payload",
+        "v": "read",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "read",
+    "payloadType": "str",
+    "x": 150,
+    "y": 300,
+    "wires": [
+      [
+        "file11read"
+      ]
+    ]
+  },
+  {
+    "id": "file11read",
+    "type": "file in",
+    "z": "lab2-flow11",
+    "name": "Read File",
+    "filename": "/data/lab2-data.json",
+    "filenameType": "str",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": true,
+    "encoding": "utf8",
+    "allProps": false,
+    "x": 400,
+    "y": 300,
+    "wires": [
+      [
+        "dbg11read"
+      ]
+    ]
+  },
+  {
+    "id": "dbg11read",
+    "type": "debug",
+    "z": "lab2-flow11",
+    "name": "Прочитанный файл",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 660,
+    "y": 300,
+    "wires": []
+  }
+]
