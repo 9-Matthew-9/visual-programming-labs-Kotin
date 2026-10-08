@@ -34,11 +34,12 @@
                                 "help",
                                 "config",
                                 "context",
+                                "swagger-ui",
                                 "dashboard"
                             ],
-                            "height": 303.20000000000005,
+                            "height": 304.8,
                             "hidden": false,
-                            "active": "info"
+                            "active": "swagger-ui"
                         },
                         "bottom": {
                             "tabs": [
@@ -54,7 +55,7 @@
                             "tabs": [
                                 "explorer"
                             ],
-                            "height": 303.20000000000005,
+                            "height": 304.8,
                             "hidden": false,
                             "active": "explorer"
                         },

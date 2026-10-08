@@ -299,6 +299,65 @@
         "verboselogging": false
     },
     {
+        "id": "ca8bc09236e3fc6b",
+        "type": "swagger-doc",
+        "summary": "Get text response",
+        "description": "Returns a simple text response from the Node-RED API.",
+        "tags": "Lab2 API",
+        "parameters": [],
+        "responses": {
+            "200": {
+                "description": "Successful text response"
+            }
+        },
+        "deprecated": false
+    },
+    {
+        "id": "3d52a952ed8576a6",
+        "type": "swagger-doc",
+        "summary": "Get student information",
+        "description": "Returns information about the student and laboratory work.",
+        "tags": "Lab2 API",
+        "parameters": [
+            {
+                "name": "",
+                "in": null,
+                "required": false
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "Successful response with student information"
+            }
+        },
+        "deprecated": false
+    },
+    {
+        "id": "f88c8a41dd0d3c6b",
+        "type": "swagger-doc",
+        "summary": "Get item by ID",
+        "description": "Returns an item by its identifier or returns 404 when the item does not exist.",
+        "tags": "Lab2 API",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "description": "Item identifier",
+                "required": true,
+                "type": "integer"
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "Item found"
+            },
+            "404": {
+                "description": "Item not found"
+            }
+        },
+        "deprecated": false
+    },
+    {
         "id": "72d08d9588231512",
         "type": "inject",
         "z": "95d84f3042f82e5d",
@@ -860,7 +919,7 @@
         "method": "get",
         "upload": false,
         "skipBodyParsing": false,
-        "swaggerDoc": "",
+        "swaggerDoc": "ca8bc09236e3fc6b",
         "x": 270,
         "y": 260,
         "wires": [
@@ -909,7 +968,7 @@
         "method": "get",
         "upload": false,
         "skipBodyParsing": false,
-        "swaggerDoc": "",
+        "swaggerDoc": "3d52a952ed8576a6",
         "x": 290,
         "y": 340,
         "wires": [
@@ -954,11 +1013,11 @@
         "type": "http in",
         "z": "43a08a4179e3c863",
         "name": "",
-        "url": "/api/items/:id",
+        "url": "/api/items",
         "method": "get",
         "upload": false,
         "skipBodyParsing": false,
-        "swaggerDoc": "",
+        "swaggerDoc": "f88c8a41dd0d3c6b",
         "x": 300,
         "y": 440,
         "wires": [
@@ -972,7 +1031,7 @@
         "type": "function",
         "z": "43a08a4179e3c863",
         "name": "function 6",
-        "func": "const id = Number(msg.req.params.id);\n\nif (id === 1) {\n    msg.statusCode = 200;\n    msg.payload = {\n        id: 1,\n        name: \"Burger\"\n    };\n} else if (id === 2) {\n    msg.statusCode = 200;\n    msg.payload = {\n        id: 2,\n        name: \"Pizza\"\n    };\n} else {\n    msg.statusCode = 404;\n    msg.payload = {\n        error: \"Item not found\",\n        id: id\n    };\n}\n\nreturn msg;",
+        "func": "const id = Number(msg.req.query.id);\n\nif (id === 1) {\n    msg.statusCode = 200;\n    msg.payload = {\n        id: 1,\n        name: \"Burger\"\n    };\n} else if (id === 2) {\n    msg.statusCode = 200;\n    msg.payload = {\n        id: 2,\n        name: \"Pizza\"\n    };\n} else {\n    msg.statusCode = 404;\n    msg.payload = {\n        error: \"Item not found\",\n        id: id\n    };\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,

@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "@5minds/node-red-openapi-generator": "^7.10.0",
         "node-red-contrib-telegrambot": "~19.0.3",
         "node-red-dashboard": "~3.6.6"
     }
