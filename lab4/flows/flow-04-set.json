@@ -1,0 +1,107 @@
+{
+  "name": "Lab4 Kotin - Set Fields and Timestamp",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1f33ab82-8f3a-4cde-a37e-da0c4de20c56",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "071c9cd0-a9b9-40f4-a81f-acac46139388",
+              "name": "topic",
+              "value": "lab4/Kotin/set",
+              "type": "string"
+            },
+            {
+              "id": "54c2a127-ef39-440e-a4cb-2de85d63d60a",
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "6d814af1-09b4-4dc5-ba86-f1ef4da77a30",
+              "name": "payload",
+              "value": "Сообщение для лабораторной №4 — Kotin",
+              "type": "string"
+            },
+            {
+              "id": "232b5edd-9b30-40e2-92ba-d829a2591db6",
+              "name": "group",
+              "value": "СДП-ИИ-241",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2809e98-f6b9-459d-bdda-00f3b7e3fa3c",
+      "name": "Set Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const message = $input.first().json;\nreturn [{ json: { ...message, completeMessage: JSON.stringify(message, null, 2) } }];"
+      },
+      "id": "3430f37b-79e4-448c-b08e-d568e73e5b88",
+      "name": "Code - Complete Object",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Fields": {
+      "main": [
+        [
+          {
+            "node": "Code - Complete Object",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "ce23dd69-d2ed-475f-a3da-c6a24ce6e2e2",
+  "meta": {
+    "instanceId": "b879213b855129015c7688fe07210bafd620e572a4eb087bc9fdc8d57f56e000"
+  },
+  "nodeGroups": [],
+  "id": "F3kRWwv00NbmAExu",
+  "tags": []
+}

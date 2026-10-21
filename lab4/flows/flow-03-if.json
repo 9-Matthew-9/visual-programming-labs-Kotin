@@ -1,0 +1,139 @@
+{
+  "name": "Lab4 Kotin - IF Branch",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d8c6f0c1-73ac-44ff-9ae7-5441782b6090",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const values = [3, 7, 10];\nlet payload = 7;\nlet total = 0;\nfor (const value of values) total += value;\nconst result = total > 10 ? 'total-greater-than-10' : 'total-not-greater-than-10';\nreturn [{ json: { payload, total, values, result, student: 'Kotin', group: 'СДП-ИИ-241' } }];"
+      },
+      "id": "18a391ae-ada7-466a-bdc8-ac60f335e500",
+      "name": "Code - Prepare IF Value",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "17d24ac3-d102-47af-afd6-d8514f208c60",
+              "leftValue": "={{ $json.payload }}",
+              "rightValue": 5,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "3fd64c14-1906-433a-9b82-637f6df19213",
+      "name": "IF - Payload > 5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        80
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "582f8451-a5d8-44b0-8500-37f93c090ab5",
+      "name": "NoOp - TRUE",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        704,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fb56dc4f-c41a-4ef2-914e-29d2930d24d2",
+      "name": "NoOp - FALSE",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        704,
+        192
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code - Prepare IF Value",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Prepare IF Value": {
+      "main": [
+        [
+          {
+            "node": "IF - Payload > 5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Payload > 5": {
+      "main": [
+        [
+          {
+            "node": "NoOp - TRUE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp - FALSE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e01dd067-de28-4d77-bded-6e903509a06c",
+  "meta": {
+    "instanceId": "b879213b855129015c7688fe07210bafd620e572a4eb087bc9fdc8d57f56e000"
+  },
+  "nodeGroups": [],
+  "id": "419crIGR9mVS7dq2",
+  "tags": []
+}
