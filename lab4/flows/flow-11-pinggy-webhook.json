@@ -1,0 +1,52 @@
+{
+  "name": "Lab4 Kotin - Pinggy Public Status Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "lab4-kotin-status",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "0d28e7ab-3a69-4f6e-9d5b-fcdb987a9b10",
+      "name": "Webhook - Public Status",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [260, 300],
+      "webhookId": "0d28e7ab-3a69-4f6e-9d5b-fcdb987a9b10"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const student = 'Kotin';\nconst group = 'REPLACE_WITH_YOUR_GROUP';\n\nreturn [{\n  json: {\n    status: 'ok',\n    achievement: '4.N - Pinggy tunnel',\n    project: 'Visual Programming Technologies - Lab 4',\n    student,\n    group,\n    message: 'n8n is reachable through the temporary public tunnel',\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "b63d0dd6-8c46-4e52-aed9-70a2fba9ea21",
+      "name": "Code - Status JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Public Status": {
+      "main": [
+        [
+          {
+            "node": "Code - Status JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fc66fbca-0e1c-48ea-ace2-5ec1f1be6b23",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}
