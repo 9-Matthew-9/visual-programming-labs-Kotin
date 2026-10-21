@@ -1,0 +1,101 @@
+{
+  "name": "Lab4 Kotin - Redis Set and Get",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "8cde1dec-73b1-4c68-8a7b-aa1017958f35",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "kotin",
+        "value": "Lab4 Redis test value — Kotin",
+        "keyType": "string"
+      },
+      "id": "7c9e32ed-c362-454e-a78f-6abf7a7afe5f",
+      "name": "Redis - Set kotin",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ],
+      "credentials": {
+        "redis": {
+          "id": "lNQ3BcTfq5z6qPsZ",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "value",
+        "key": "kotin",
+        "keyType": "string",
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "d3a6666a-4d24-4c6c-b816-8f7e52488e52",
+      "name": "Redis - Get kotin",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        512,
+        0
+      ],
+      "credentials": {
+        "redis": {
+          "id": "lNQ3BcTfq5z6qPsZ",
+          "name": "Redis account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Redis - Set kotin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis - Set kotin": {
+      "main": [
+        [
+          {
+            "node": "Redis - Get kotin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "02982b7e-c5c1-41f8-8521-de7ee26ccf5d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b879213b855129015c7688fe07210bafd620e572a4eb087bc9fdc8d57f56e000"
+  },
+  "nodeGroups": [],
+  "id": "v8V7zWcu4gcmZO5q",
+  "tags": []
+}

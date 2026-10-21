@@ -1,0 +1,118 @@
+{
+  "name": "Lab4 Kotin - Redis Delete and Verify",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7188f775-7bea-478e-a6fd-2eb88fe087d7",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "kotin"
+      },
+      "id": "cb8ad952-73f2-41f7-99b2-487d10b4752d",
+      "name": "Redis - Delete kotin",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        224,
+        0
+      ],
+      "credentials": {
+        "redis": {
+          "id": "lNQ3BcTfq5z6qPsZ",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "keys",
+        "keyPattern": "kotin",
+        "getValues": false
+      },
+      "id": "63035356-4369-4b3a-b856-32d6f0bc2e8c",
+      "name": "Redis - Keys Check",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "credentials": {
+        "redis": {
+          "id": "lNQ3BcTfq5z6qPsZ",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst keys = Array.isArray(data.keys) ? data.keys : [];\nconst exists = keys.includes('kotin');\nreturn [{ json: { key: 'kotin', exists, message: exists ? 'Ключ kotin ещё существует' : 'Ключ kotin отсутствует после удаления', keysFound: keys } }];"
+      },
+      "id": "58bd2261-e46d-4352-84ea-77a8e2aabbc2",
+      "name": "Code - Verify Absent",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Redis - Delete kotin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis - Delete kotin": {
+      "main": [
+        [
+          {
+            "node": "Redis - Keys Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis - Keys Check": {
+      "main": [
+        [
+          {
+            "node": "Code - Verify Absent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "20614b72-3816-41c3-a736-a45535004ee3",
+  "meta": {
+    "instanceId": "b879213b855129015c7688fe07210bafd620e572a4eb087bc9fdc8d57f56e000"
+  },
+  "nodeGroups": [],
+  "id": "YXHc6bg3beG5eNEg",
+  "tags": []
+}
