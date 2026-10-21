@@ -1,0 +1,23 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      GENERIC_TIMEZONE: Europe/Berlin
+      TZ: Europe/Berlin
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+      N8N_RESTRICT_FILE_ACCESS_TO: /data
+    volumes:
+      - ./lab4/n8n_data:/home/node/.n8n
+      - ./lab4/data:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
