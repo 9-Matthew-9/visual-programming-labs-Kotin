@@ -1,0 +1,63 @@
+{
+  "name": "Lab4 Kotin - Schedule Every 5 Minutes",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "id": "4b899627-9949-4969-b029-b079afc0d13b",
+      "name": "Schedule Trigger - Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { student: 'Kotin', group: 'СДП-ИИ-241', topic: 'lab4/Kotin/schedule', currentTime: new Date().toISOString(), message: 'Schedule Trigger выполнился' } }];"
+      },
+      "id": "dfe562f4-5531-40df-8e46-dd0b87a6e7e7",
+      "name": "Code - Current Time",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger - Every 5 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Code - Current Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e3047843-919b-4d2e-b3ee-9b7001e3a9ea",
+  "meta": {
+    "instanceId": "b879213b855129015c7688fe07210bafd620e572a4eb087bc9fdc8d57f56e000"
+  },
+  "nodeGroups": [],
+  "id": "9010yWvpryX0IZSz",
+  "tags": []
+}

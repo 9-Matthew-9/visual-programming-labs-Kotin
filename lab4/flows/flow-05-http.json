@@ -1,0 +1,85 @@
+{
+  "name": "Lab4 Kotin - HTTP Request Cat Fact",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "51b5abef-944b-4264-a119-90fb3277cdf2",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://catfact.ninja/fact",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "6c437543-2704-42e9-a2a4-65238393d01a",
+      "name": "HTTP Request - Cat Fact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "return $input.all().map(item => ({ json: { ...item.json, source: 'catfact.ninja', checkedAt: new Date().toISOString() } }));"
+      },
+      "id": "46d5f355-ca72-4560-9121-fa1a3dd82430",
+      "name": "Code - Label Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        710,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request - Cat Fact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request - Cat Fact": {
+      "main": [
+        [
+          {
+            "node": "Code - Label Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d6e64160-d91b-43f4-b45e-17109c000d47",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
