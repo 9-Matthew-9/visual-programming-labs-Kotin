@@ -1,0 +1,99 @@
+{
+  "name": "Lab4 Kotin - Manual Trigger Set Code",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1997f436-e9e2-4469-b64a-0ff42e652a6e",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eedf4062-f1f2-474c-b8fe-de10072b00fa",
+              "name": "payload",
+              "value": "Kotin",
+              "type": "string"
+            },
+            {
+              "id": "a716b119-8665-4b1c-b931-aa203848abb2",
+              "name": "topic",
+              "value": "lab4/Kotin/basic",
+              "type": "string"
+            },
+            {
+              "id": "c4bab368-34d0-4c57-8939-aebe5fb662b9",
+              "name": "group",
+              "value": "УКАЖИ_ГРУППУ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6e347c1a-8072-4873-bc2f-693b6d2180e4",
+      "name": "Set Basic Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const input = $input.first().json;\nconsole.log('Lab 4 input:', JSON.stringify(input));\nreturn [{ json: { ...input, debugText: JSON.stringify(input, null, 2) } }];"
+      },
+      "id": "4776cc07-6767-4449-b9b4-5ab75a70a665",
+      "name": "Code - Show Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Basic Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Basic Message": {
+      "main": [
+        [
+          {
+            "node": "Code - Show Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f930a442-4484-49ad-bafa-61e3b53378cf",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

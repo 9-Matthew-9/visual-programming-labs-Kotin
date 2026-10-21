@@ -1,0 +1,77 @@
+{
+  "name": "Lab4 Kotin - Code Basics",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d1e31507-14d7-4558-965d-c109e6ec3dc8",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -176
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const surname = 'Kotin';\nconst group = 'СДП-ИИ-241';\nconst values = [2, 4, 6];\nlet total = 0;\nfor (let i = 0; i < values.length; i++) {\n  total += values[i];\n}\nlet result;\nif (total >= 10) {\n  result = 'Сумма не меньше 10';\n} else {\n  result = 'Сумма меньше 10';\n}\nconst student = { surname, group, values, total, result };\nreturn [{\n  json: {\n    payload: `lab4/${surname}/${group}/code`,\n    student,\n    values,\n    total,\n    result\n  }\n}];"
+      },
+      "id": "fe311ff1-679b-46d3-a86e-d2f96e8b723e",
+      "name": "Code - JS Basics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        -176
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "270712cd-44e0-4191-baea-ebaacf47ff82",
+      "name": "NoOp - Output",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -176
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code - JS Basics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - JS Basics": {
+      "main": [
+        [
+          {
+            "node": "NoOp - Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4ad94335-7d5d-4426-a8a9-39c692639fd5",
+  "meta": {
+    "instanceId": "b879213b855129015c7688fe07210bafd620e572a4eb087bc9fdc8d57f56e000"
+  },
+  "nodeGroups": [],
+  "id": "G9xrlmUgvvv8kiwx",
+  "tags": []
+}
